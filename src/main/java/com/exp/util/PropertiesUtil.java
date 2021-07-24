@@ -5,9 +5,14 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.springframework.stereotype.Component;
+
+// Need to refactor this class. 
 public class PropertiesUtil {
 
-	private Properties prop = new Properties();
+	//move this to database later. good enough for now. 
+	private static Properties prop = new Properties();
+	//This should be handled and cached by ehcache. 
 	public void setupApplicationPropertiesFromFile() {
 		try {
 			prop.load( new FileInputStream(
@@ -17,12 +22,23 @@ public class PropertiesUtil {
 			e.printStackTrace();
 		}
 	}
+	//Create new properties file
+	//TODO
+	public static void createNewPropertiesFIle() {
+		
+	}
 	
-	public String getAccess() {
+	//Add new properties file for new connection. 
+	//TODO.
+	public static void addNewAWSConnection() {
+		
+	}
+	
+	public static String getAccess() {
 		return prop.get("aws.access").toString();
 	}
 
-	public String getSecret() {
+	public static String getSecret() {
 		return prop.get("aws.secret").toString();
 	}
 	

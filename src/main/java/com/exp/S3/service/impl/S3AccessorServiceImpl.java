@@ -1,7 +1,9 @@
-package main.java.com.exp.s3;
+package main.java.com.exp.s3.service.impl;
 
 import java.io.File;
 import java.util.List;
+
+import org.springframework.stereotype.Component;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
@@ -9,45 +11,32 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.Bucket;
-import com.amazonaws.services.s3.model.ListObjectsV2Result;
 import com.amazonaws.services.s3.model.PutObjectResult;
-import com.amazonaws.services.s3.model.S3ObjectSummary;
 
+import main.java.com.exp.s3.service.S3AccessorService;
 import main.java.com.exp.util.PropertiesUtil;
-public class S3Accessor {
 
+@Component
+public class S3AccessorServiceImpl implements S3AccessorService {
 
-	public static void main(String[] args) {
-		/*
-		 * Set me up with autowiring if I ever go past just messing around with AWS SDK. 
-		 */
-		PropertiesUtil prop = new PropertiesUtil(); 
-		prop.setupApplicationPropertiesFromFile();
-		
+	
+	public List<Bucket> listBuckets(){
 		AWSCredentials cred = new BasicAWSCredentials(
-				prop.getAccess(),
-				prop.getSecret());
+				PropertiesUtil.getAccess(),
+				PropertiesUtil.getSecret());
 
 		AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(cred))
 				.withRegion("us-east-2").build();
-		
-		
-		List<Bucket> buckets = s3Client.listBuckets();
-		for (Bucket bucket : buckets) {
-			if(!bucket.getName().contains("elasticbeanstalk")) {
-				System.out.println(bucket.getName() + "" + bucket.getOwner());
-			}
 
-		}
-		ListObjectsV2Result result = s3Client.listObjectsV2("ksmitwtesting");
-		for(S3ObjectSummary sum: result.getObjectSummaries()) {
-			System.out.println(sum.getKey());
-		}
-		
-		addFileToBucket(s3Client,"D:\\ProgramingSampleDocs\\aws_sample_docs\\TestUpload.txt");
+		return s3Client.listBuckets();
 	}
 	
-	public static void addFileToBucket(AmazonS3 s3Client, String fileLocation) {
+	//TODO: Implement me. 
+	public List<String> viewItemsInBucket(String bucketName){
+		return null; 
+	}
+	
+	public void addFileToBucket(AmazonS3 s3Client, String fileLocation) {
 		//String bucketName, String key, File file
 		File file = new File(fileLocation);
 		try {
@@ -61,11 +50,7 @@ public class S3Accessor {
 			System.out.println("Failed to upload document to bucket");
 			e.printStackTrace();
 		}
-		
-		
-		
 	}
 	
 	
-
 }
