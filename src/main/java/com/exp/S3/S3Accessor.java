@@ -3,6 +3,8 @@ package main.java.com.exp.s3;
 import java.io.File;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -15,14 +17,11 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 
 import main.java.com.exp.util.PropertiesUtil;
 public class S3Accessor {
-
-
+/*
+	@Autowired
+	PropertiesUtil prop;
 	public static void main(String[] args) {
-		/*
-		 * Set me up with autowiring if I ever go past just messing around with AWS SDK. 
-		 */
-		PropertiesUtil prop = new PropertiesUtil(); 
-		prop.setupApplicationPropertiesFromFile();
+
 		
 		AWSCredentials cred = new BasicAWSCredentials(
 				prop.getAccess(),
@@ -65,7 +64,7 @@ public class S3Accessor {
 		
 		
 	}
-	
+	*/
 	
 
 }

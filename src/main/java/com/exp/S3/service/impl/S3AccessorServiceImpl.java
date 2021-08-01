@@ -3,6 +3,7 @@ package main.java.com.exp.s3.service.impl;
 import java.io.File;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -18,12 +19,13 @@ import main.java.com.exp.util.PropertiesUtil;
 
 @Component
 public class S3AccessorServiceImpl implements S3AccessorService {
-
+	@Autowired
+	PropertiesUtil prop;
 	
 	public List<Bucket> listBuckets(){
 		AWSCredentials cred = new BasicAWSCredentials(
-				PropertiesUtil.getAccess(),
-				PropertiesUtil.getSecret());
+				prop.getAccess(),
+				prop.getSecret());
 
 		AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(cred))
 				.withRegion("us-east-2").build();

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.boot.autoconfigure.jdbc.*;
 
 @SpringBootApplication()
-@ComponentScan("main.java.com.exp.s3.service")
+@ComponentScan("main.java.com.exp.s3.service,main.java.com.exp.s3.controller, main.java.com.exp.util")
 @Configuration
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 public class Main {

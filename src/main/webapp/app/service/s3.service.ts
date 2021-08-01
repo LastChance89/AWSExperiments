@@ -11,7 +11,7 @@ export class S3Service {
   constructor(private http: HttpClient) { }
 
   getBuckets(): Observable<Array<Bucket>> {
-    return this.http.post<Array<Bucket>>('s3/listBuckets','');
+    return this.http.post<Array<Bucket>>('/s3/listBuckets','');
   }
 
 
