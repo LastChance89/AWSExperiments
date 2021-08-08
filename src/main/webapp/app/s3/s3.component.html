@@ -1,9 +1,14 @@
 <p>s3 works!</p>
 
 <div >
-<h3> BLEEEEEEEEHHHHHHHHHHHHH</h3>
+<h3> select a bucket below</h3>
     <tr *ngFor="let bucket of buckets">
-        <td>{{bucket.name}}</td>
+        <a href="javascript:void(0);"  (click)="selectBucket(bucket.name)">{{bucket.name}}</a>
     </tr>
-    
+</div>
+
+
+
+<div> 
+    <s3-objects [bucketObjects] = "bucketObjects" ></s3-objects>
 </div>

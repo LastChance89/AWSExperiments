@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Bucket } from '../model/bucket';
+import { BucketObject } from '../model/bucket-object';
 import { S3Service } from '../service/s3.service';
 
 @Component({
@@ -12,16 +13,29 @@ export class S3Component implements OnInit {
   constructor(private s3Service: S3Service) { }
 
   buckets: Array<Bucket>;
+  bucketObjects: Array<BucketObject>
 
   ngOnInit(): void {
     this.s3Service.getBuckets().subscribe(result =>{
       console.log(this.buckets);
       this.buckets = result;
     }, error =>{
-      console.log("ERROR!!!!!!!");
+      //Build error message
+      console.log("Error: ", error);
     })
   }
 
+  selectBucket(bucketName: String){
+    this.s3Service.getBucketContents(bucketName).subscribe(result =>{
+      console.log(result);
+      this.bucketObjects = result;
+    },
+    error =>{
+      console.log("ERROR: ", error)
+    }
+    )
+    console.log("BLEH");
+  }
 
 
   
