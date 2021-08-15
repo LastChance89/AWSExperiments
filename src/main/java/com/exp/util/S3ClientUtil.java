@@ -19,10 +19,15 @@ public class S3ClientUtil {
 	
 	private AmazonS3 s3Client;
 	
+	//Will need to remove this and make the call to this through a controller either on init 
+	//or on constructor from the front end, that way if nothing exists we can populate a 
+	//properties file on the local somewhere (user choice?) and then we can handle how to 
+	//exactly load this. 
 	@PostConstruct
 	public void setupClientUtilOnStartup() {
 		//Check to make sure that both the required properties are set
-		if(!prop.getAccess().isBlank() && !prop.getSecret().isBlank()) {
+		if(!prop.getAccess().isBlank() && prop.getAccess()!=null && !prop.getSecret().isBlank() &&
+				prop.getSecret()!=null) {
 			setupS3Client();
 		}
 	}
