@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 
+import main.java.com.exp.s3.model.S3File;
 import main.java.com.exp.s3.service.S3AccessorService;
 
 @RestController()
@@ -31,5 +31,11 @@ public class S3Controller {
 	public List<S3ObjectSummary> getBucketContents(@RequestBody String bucketName){
 		return s3Service.getBucketContents(bucketName);
 	}
+	
+	@PostMapping("/getBucketObject")
+	public S3File getBucketObject(@RequestBody Map<String,String> userSelect) {
+		return s3Service.getBucketObjectContents(userSelect);
+	}
+	
 	
 }

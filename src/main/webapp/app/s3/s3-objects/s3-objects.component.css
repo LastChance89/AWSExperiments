@@ -1,4 +1,6 @@
 .object-container{
     border: solid;
     border-width: initial; 
+    height: 10em;
+    margin-top: 2px;
 }

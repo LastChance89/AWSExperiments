@@ -13,7 +13,8 @@ export class S3Component implements OnInit {
   constructor(private s3Service: S3Service) { }
 
   buckets: Array<Bucket>;
-  bucketObjects: Array<BucketObject>
+  bucketObjects: Array<BucketObject>;
+  selectedBucket: String;
 
   ngOnInit(): void {
     this.s3Service.getBuckets().subscribe(result =>{
@@ -26,6 +27,7 @@ export class S3Component implements OnInit {
   }
 
   selectBucket(bucketName: String){
+    this.selectedBucket = bucketName;
     this.s3Service.getBucketContents(bucketName).subscribe(result =>{
       console.log(result);
       this.bucketObjects = result;

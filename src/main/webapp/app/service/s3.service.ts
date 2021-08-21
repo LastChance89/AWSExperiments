@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Bucket } from '../model/bucket';
 import { BucketObject } from '../model/bucket-object';
+import { S3Object } from '../model/s3-object';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,12 @@ export class S3Service {
 
   getBucketContents(bucketName: String): Observable<Array<BucketObject>>{
     return this.http.post<Array<BucketObject>>('/s3/getBucketContents',bucketName)
+  }
+
+
+  getObjectContents( bucketName: String, objectName: String) : Observable<S3Object> {
+    let payload = {"bucketName": bucketName, "objectName": objectName}
+    return this.http.post<S3Object>('/s3/getBucketObject', payload);
   }
 
 

@@ -57,6 +57,7 @@ class S3Component {
         });
     }
     selectBucket(bucketName) {
+        this.selectedBucket = bucketName;
         this.s3Service.getBucketContents(bucketName).subscribe(result => {
             console.log(result);
             this.bucketObjects = result;
@@ -67,7 +68,7 @@ class S3Component {
     }
 }
 S3Component.ɵfac = function S3Component_Factory(t) { return new (t || S3Component)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_service_s3_service__WEBPACK_IMPORTED_MODULE_1__["S3Service"])); };
-S3Component.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: S3Component, selectors: [["app-s3"]], decls: 6, vars: 2, consts: [[1, "bucket-container"], [4, "ngFor", "ngForOf"], [3, "bucketObjects"], ["href", "javascript:void(0);", 3, "click"]], template: function S3Component_Template(rf, ctx) { if (rf & 1) {
+S3Component.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: S3Component, selectors: [["app-s3"]], decls: 6, vars: 3, consts: [[1, "bucket-container"], [4, "ngFor", "ngForOf"], [3, "selectedBucket", "bucketObjects"], ["href", "javascript:void(0);", 3, "click"]], template: function S3Component_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h3");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " select a bucket below");
@@ -81,7 +82,7 @@ S3Component.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCompon
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.buckets);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("bucketObjects", ctx.bucketObjects);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("selectedBucket", ctx.selectedBucket)("bucketObjects", ctx.bucketObjects);
     } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], _s3_objects_s3_objects_component__WEBPACK_IMPORTED_MODULE_3__["S3ObjectsComponent"]], styles: [".bucket-container[_ngcontent-%COMP%]{\r\n    margin-bottom: 2%;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInMzLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxpQkFBaUI7QUFDckIiLCJmaWxlIjoiczMuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5idWNrZXQtY29udGFpbmVye1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMiU7XHJcbn0iXX0= */"] });
 
 
@@ -110,6 +111,10 @@ class S3Service {
     }
     getBucketContents(bucketName) {
         return this.http.post('/s3/getBucketContents', bucketName);
+    }
+    getObjectContents(bucketName, objectName) {
+        let payload = { "bucketName": bucketName, "objectName": objectName };
+        return this.http.post('/s3/getBucketObject', payload);
     }
 }
 S3Service.ɵfac = function S3Service_Factory(t) { return new (t || S3Service)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -242,34 +247,64 @@ AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCompo
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S3ObjectsComponent", function() { return S3ObjectsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "zBE0");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "bAJt");
+/* harmony import */ var _service_s3_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../service/s3.service */ "EQ2v");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "bAJt");
 
 
-function S3ObjectsComponent_tr_1_Template(rf, ctx) { if (rf & 1) {
+
+function S3ObjectsComponent_tr_5_Template(rf, ctx) { if (rf & 1) {
+    const _r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "tr");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "a", 5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function S3ObjectsComponent_tr_5_Template_a_click_2_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r3); const bucketObject_r1 = ctx.$implicit; const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r2.getBucketObject(bucketObject_r1.key); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const bucketObject_r1 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](bucketObject_r1.key);
 } }
 class S3ObjectsComponent {
-    constructor() { }
+    constructor(s3) {
+        this.s3 = s3;
+        this.disabled = true;
+    }
     ngOnInit() {
     }
+    getBucketObject(objectName) {
+        this.s3.getObjectContents(this.selectedBucket, objectName).subscribe(result => {
+            console.log(result);
+            this.objectContents = result;
+        }, error => {
+            console.log(error);
+        });
+    }
+    uploadFiles(e) {
+        e.preventDefault();
+    }
 }
-S3ObjectsComponent.ɵfac = function S3ObjectsComponent_Factory(t) { return new (t || S3ObjectsComponent)(); };
-S3ObjectsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: S3ObjectsComponent, selectors: [["s3-objects"]], inputs: { bucketObjects: "bucketObjects" }, decls: 2, vars: 1, consts: [[1, "object-container"], [4, "ngFor", "ngForOf"]], template: function S3ObjectsComponent_Template(rf, ctx) { if (rf & 1) {
+S3ObjectsComponent.ɵfac = function S3ObjectsComponent_Factory(t) { return new (t || S3ObjectsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_service_s3_service__WEBPACK_IMPORTED_MODULE_1__["S3Service"])); };
+S3ObjectsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: S3ObjectsComponent, selectors: [["s3-objects"]], inputs: { selectedBucket: "selectedBucket", bucketObjects: "bucketObjects" }, outputs: { objectContents: "objectContents" }, decls: 6, vars: 2, consts: [[1, "controls-container"], ["id", "fileUpload", "type", "file", "multiple", "", 3, "change"], ["type", "button", 3, "disabled"], [1, "object-container"], [4, "ngFor", "ngForOf"], ["href", "javascript:void(0)", 3, "click"]], template: function S3ObjectsComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, S3ObjectsComponent_tr_1_Template, 3, 1, "tr", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "input", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("change", function S3ObjectsComponent_Template_input_change_1_listener($event) { return ctx.uploadFiles($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "button", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "delete");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "div", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, S3ObjectsComponent_tr_5_Template, 4, 1, "tr", 4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", ctx.disabled);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.bucketObjects);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgForOf"]], styles: [".object-container[_ngcontent-%COMP%]{\r\n    border: solid;\r\n    border-width: initial; \r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInMzLW9iamVjdHMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGFBQWE7SUFDYixxQkFBcUI7QUFDekIiLCJmaWxlIjoiczMtb2JqZWN0cy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm9iamVjdC1jb250YWluZXJ7XHJcbiAgICBib3JkZXI6IHNvbGlkO1xyXG4gICAgYm9yZGVyLXdpZHRoOiBpbml0aWFsOyBcclxufSJdfQ== */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"]], styles: [".object-container[_ngcontent-%COMP%]{\r\n    border: solid;\r\n    border-width: initial; \r\n    height: 10em;\r\n    margin-top: 2px;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInMzLW9iamVjdHMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGFBQWE7SUFDYixxQkFBcUI7SUFDckIsWUFBWTtJQUNaLGVBQWU7QUFDbkIiLCJmaWxlIjoiczMtb2JqZWN0cy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm9iamVjdC1jb250YWluZXJ7XHJcbiAgICBib3JkZXI6IHNvbGlkO1xyXG4gICAgYm9yZGVyLXdpZHRoOiBpbml0aWFsOyBcclxuICAgIGhlaWdodDogMTBlbTtcclxuICAgIG1hcmdpbi10b3A6IDJweDtcclxufSJdfQ== */"] });
 
 
 /***/ }),
