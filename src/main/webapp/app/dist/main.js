@@ -88,6 +88,33 @@ S3Component.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCompon
 
 /***/ }),
 
+/***/ "B93Q":
+/*!******************************************************************************************!*\
+  !*** ./src/main/webapp/app/popup-modal/message/popup-message/popup-message.component.ts ***!
+  \******************************************************************************************/
+/*! exports provided: PopupMessageComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PopupMessageComponent", function() { return PopupMessageComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "zBE0");
+
+class PopupMessageComponent {
+    constructor() { }
+    ngOnInit() {
+    }
+}
+PopupMessageComponent.ɵfac = function PopupMessageComponent_Factory(t) { return new (t || PopupMessageComponent)(); };
+PopupMessageComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: PopupMessageComponent, selectors: [["app-popup-message"]], decls: 2, vars: 0, template: function PopupMessageComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "popup-message works!");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    } }, styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwb3B1cC1tZXNzYWdlLmNvbXBvbmVudC5jc3MifQ== */"] });
+
+
+/***/ }),
+
 /***/ "EQ2v":
 /*!***************************************************!*\
   !*** ./src/main/webapp/app/service/s3.service.ts ***!
@@ -119,6 +146,26 @@ class S3Service {
 }
 S3Service.ɵfac = function S3Service_Factory(t) { return new (t || S3Service)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
 S3Service.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: S3Service, factory: S3Service.ɵfac, providedIn: 'root' });
+
+
+/***/ }),
+
+/***/ "FArU":
+/*!*************************************************!*\
+  !*** ./src/main/webapp/app/model/popup-type.ts ***!
+  \*************************************************/
+/*! exports provided: PopupType */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PopupType", function() { return PopupType; });
+var PopupType;
+(function (PopupType) {
+    PopupType[PopupType["FILE"] = 0] = "FILE";
+    PopupType[PopupType["MESSAGE"] = 1] = "MESSAGE";
+    PopupType[PopupType["SHOWS3OBJECT"] = 2] = "SHOWS3OBJECT";
+})(PopupType || (PopupType = {}));
 
 
 /***/ }),
@@ -173,6 +220,91 @@ const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
+
+/***/ }),
+
+/***/ "ZfXR":
+/*!******************************************************************!*\
+  !*** ./src/main/webapp/app/popup-modal/popup-modal.component.ts ***!
+  \******************************************************************/
+/*! exports provided: PopupModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PopupModalComponent", function() { return PopupModalComponent; });
+/* harmony import */ var _model_popup_type__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../model/popup-type */ "FArU");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "zBE0");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "1kSV");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "bAJt");
+
+
+
+
+function PopupModalComponent_div_2_Template(rf, ctx) { if (rf & 1) {
+    const _r2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "input", 3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("change", function PopupModalComponent_div_2_Template_input_change_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r2); const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](); return ctx_r1.uploadFiles($event); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+} }
+class PopupModalComponent {
+    constructor(activeModal) {
+        this.activeModal = activeModal;
+        this.filePop = _model_popup_type__WEBPACK_IMPORTED_MODULE_0__["PopupType"].FILE;
+        this.messagePop = _model_popup_type__WEBPACK_IMPORTED_MODULE_0__["PopupType"].MESSAGE;
+        this.showS3Pop = _model_popup_type__WEBPACK_IMPORTED_MODULE_0__["PopupType"].SHOWS3OBJECT;
+    }
+    ngOnInit() {
+    }
+    uploadFiles(e) {
+        e.preventDefault();
+        let files = e.target.files;
+        console.log(files);
+    }
+}
+PopupModalComponent.ɵfac = function PopupModalComponent_Factory(t) { return new (t || PopupModalComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbActiveModal"])); };
+PopupModalComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: PopupModalComponent, selectors: [["popup-modal"]], inputs: { tpye: "tpye" }, decls: 3, vars: 2, consts: [[1, "modal-header"], [1, "modal-body", 3, "ngSwitch"], [4, "ngSwitchCase"], ["id", "fileUpload", "type", "file", "multiple", "", 3, "change"]], template: function PopupModalComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](2, PopupModalComponent_div_2_Template, 2, 0, "div", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngSwitch", ctx.tpye);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngSwitchCase", ctx.filePop);
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_3__["NgSwitch"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgSwitchCase"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwb3B1cC1tb2RhbC5jb21wb25lbnQuY3NzIn0= */"] });
+
+
+/***/ }),
+
+/***/ "dKwU":
+/*!*********************************************************************************!*\
+  !*** ./src/main/webapp/app/popup-modal/file/popup-file/popup-file.component.ts ***!
+  \*********************************************************************************/
+/*! exports provided: PopupFileComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PopupFileComponent", function() { return PopupFileComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "zBE0");
+
+class PopupFileComponent {
+    constructor() { }
+    ngOnInit() {
+    }
+}
+PopupFileComponent.ɵfac = function PopupFileComponent_Factory(t) { return new (t || PopupFileComponent)(); };
+PopupFileComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: PopupFileComponent, selectors: [["app-popup-file"]], decls: 2, vars: 0, template: function PopupFileComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "popup-file works!");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    } }, styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwb3B1cC1maWxlLmNvbXBvbmVudC5jc3MifQ== */"] });
 
 
 /***/ }),
@@ -246,31 +378,43 @@ AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCompo
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "S3ObjectsComponent", function() { return S3ObjectsComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "zBE0");
-/* harmony import */ var _service_s3_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../service/s3.service */ "EQ2v");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "bAJt");
+/* harmony import */ var _model_popup_type__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../model/popup-type */ "FArU");
+/* harmony import */ var _popup_modal_popup_modal_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../popup-modal/popup-modal.component */ "ZfXR");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "zBE0");
+/* harmony import */ var _service_s3_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../service/s3.service */ "EQ2v");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "1kSV");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "bAJt");
 
 
 
-function S3ObjectsComponent_tr_5_Template(rf, ctx) { if (rf & 1) {
-    const _r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "a", 5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function S3ObjectsComponent_tr_5_Template_a_click_2_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r3); const bucketObject_r1 = ctx.$implicit; const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r2.getBucketObject(bucketObject_r1.key); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+
+
+function S3ObjectsComponent_tr_6_Template(rf, ctx) { if (rf & 1) {
+    const _r3 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "tr");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](1, "td");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](2, "a", 5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function S3ObjectsComponent_tr_6_Template_a_click_2_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r3); const bucketObject_r1 = ctx.$implicit; const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](); return ctx_r2.getBucketObject(bucketObject_r1.key); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const bucketObject_r1 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](bucketObject_r1.key);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](bucketObject_r1.key);
 } }
 class S3ObjectsComponent {
-    constructor(s3) {
+    constructor(s3, ngbModal) {
         this.s3 = s3;
+        this.ngbModal = ngbModal;
         this.disabled = true;
+        this.options = {
+            backdrop: 'static',
+            centered: true,
+            size: "dialog-centered"
+        };
     }
     ngOnInit() {
     }
@@ -282,29 +426,32 @@ class S3ObjectsComponent {
             console.log(error);
         });
     }
-    uploadFiles(e) {
-        e.preventDefault();
+    displayModal(e) {
+        e.preventDefault;
+        const modelRef = this.ngbModal.open(_popup_modal_popup_modal_component__WEBPACK_IMPORTED_MODULE_1__["PopupModalComponent"], this.options);
+        modelRef.componentInstance.tpye = _model_popup_type__WEBPACK_IMPORTED_MODULE_0__["PopupType"].FILE;
     }
 }
-S3ObjectsComponent.ɵfac = function S3ObjectsComponent_Factory(t) { return new (t || S3ObjectsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_service_s3_service__WEBPACK_IMPORTED_MODULE_1__["S3Service"])); };
-S3ObjectsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: S3ObjectsComponent, selectors: [["s3-objects"]], inputs: { selectedBucket: "selectedBucket", bucketObjects: "bucketObjects" }, outputs: { objectContents: "objectContents" }, decls: 6, vars: 2, consts: [[1, "controls-container"], ["id", "fileUpload", "type", "file", "multiple", "", 3, "change"], ["type", "button", 3, "disabled"], [1, "object-container"], [4, "ngFor", "ngForOf"], ["href", "javascript:void(0)", 3, "click"]], template: function S3ObjectsComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "input", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("change", function S3ObjectsComponent_Template_input_change_1_listener($event) { return ctx.uploadFiles($event); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "button", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "delete");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "div", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, S3ObjectsComponent_tr_5_Template, 4, 1, "tr", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+S3ObjectsComponent.ɵfac = function S3ObjectsComponent_Factory(t) { return new (t || S3ObjectsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_service_s3_service__WEBPACK_IMPORTED_MODULE_3__["S3Service"]), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbModal"])); };
+S3ObjectsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineComponent"]({ type: S3ObjectsComponent, selectors: [["s3-objects"]], inputs: { selectedBucket: "selectedBucket", bucketObjects: "bucketObjects" }, outputs: { objectContents: "objectContents" }, decls: 7, vars: 2, consts: [[1, "controls-container"], ["type", "button", 3, "click"], ["type", "button", 3, "disabled"], [1, "object-container"], [4, "ngFor", "ngForOf"], ["href", "javascript:void(0)", 3, "click"]], template: function S3ObjectsComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](1, "button", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function S3ObjectsComponent_Template_button_click_1_listener($event) { return ctx.displayModal($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, "Upload Files");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](3, "button", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](4, "delete");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](5, "div", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](6, S3ObjectsComponent_tr_6_Template, 4, 1, "tr", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     } if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("disabled", ctx.disabled);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.bucketObjects);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"]], styles: [".object-container[_ngcontent-%COMP%]{\r\n    border: solid;\r\n    border-width: initial; \r\n    height: 10em;\r\n    margin-top: 2px;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInMzLW9iamVjdHMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGFBQWE7SUFDYixxQkFBcUI7SUFDckIsWUFBWTtJQUNaLGVBQWU7QUFDbkIiLCJmaWxlIjoiczMtb2JqZWN0cy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm9iamVjdC1jb250YWluZXJ7XHJcbiAgICBib3JkZXI6IHNvbGlkO1xyXG4gICAgYm9yZGVyLXdpZHRoOiBpbml0aWFsOyBcclxuICAgIGhlaWdodDogMTBlbTtcclxuICAgIG1hcmdpbi10b3A6IDJweDtcclxufSJdfQ== */"] });
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("disabled", ctx.disabled);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngForOf", ctx.bucketObjects);
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"]], styles: [".object-container[_ngcontent-%COMP%]{\r\n    border: solid;\r\n    border-width: initial; \r\n    height: 10em;\r\n    margin-top: 2px;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInMzLW9iamVjdHMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGFBQWE7SUFDYixxQkFBcUI7SUFDckIsWUFBWTtJQUNaLGVBQWU7QUFDbkIiLCJmaWxlIjoiczMtb2JqZWN0cy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm9iamVjdC1jb250YWluZXJ7XHJcbiAgICBib3JkZXI6IHNvbGlkO1xyXG4gICAgYm9yZGVyLXdpZHRoOiBpbml0aWFsOyBcclxuICAgIGhlaWdodDogMTBlbTtcclxuICAgIG1hcmdpbi10b3A6IDJweDtcclxufSJdfQ== */"] });
 
 
 /***/ }),
@@ -326,7 +473,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _s3_s3_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./s3/s3.component */ "5r+R");
 /* harmony import */ var _service_s3_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./service/s3.service */ "EQ2v");
 /* harmony import */ var _s3_s3_objects_s3_objects_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./s3/s3-objects/s3-objects.component */ "lkLQ");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ "zBE0");
+/* harmony import */ var _popup_modal_popup_modal_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./popup-modal/popup-modal.component */ "ZfXR");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "1kSV");
+/* harmony import */ var _popup_modal_file_popup_file_popup_file_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./popup-modal/file/popup-file/popup-file.component */ "dKwU");
+/* harmony import */ var _popup_modal_message_popup_message_popup_message_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./popup-modal/message/popup-message/popup-message.component */ "B93Q");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/core */ "zBE0");
+
+
+
+
 
 
 
@@ -338,17 +493,22 @@ __webpack_require__.r(__webpack_exports__);
 class AppModule {
 }
 AppModule.ɵfac = function AppModule_Factory(t) { return new (t || AppModule)(); };
-AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]] });
-AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineInjector"]({ providers: [_service_s3_service__WEBPACK_IMPORTED_MODULE_5__["S3Service"]], imports: [[
+AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_11__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]] });
+AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_11__["ɵɵdefineInjector"]({ providers: [_service_s3_service__WEBPACK_IMPORTED_MODULE_5__["S3Service"]], imports: [[
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClientModule"],
-            _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"]
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
+            _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_8__["NgbModule"],
         ]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_11__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
         _s3_s3_component__WEBPACK_IMPORTED_MODULE_4__["S3Component"],
-        _s3_s3_objects_s3_objects_component__WEBPACK_IMPORTED_MODULE_6__["S3ObjectsComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
+        _s3_s3_objects_s3_objects_component__WEBPACK_IMPORTED_MODULE_6__["S3ObjectsComponent"],
+        _popup_modal_popup_modal_component__WEBPACK_IMPORTED_MODULE_7__["PopupModalComponent"],
+        _popup_modal_file_popup_file_popup_file_component__WEBPACK_IMPORTED_MODULE_9__["PopupFileComponent"],
+        _popup_modal_message_popup_message_popup_message_component__WEBPACK_IMPORTED_MODULE_10__["PopupMessageComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
         _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClientModule"],
-        _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"]] }); })();
+        _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["AppRoutingModule"],
+        _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_8__["NgbModule"]] }); })();
 
 
 /***/ }),

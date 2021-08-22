@@ -1,8 +1,6 @@
 
 <div class = "controls-container"> 
-    <!--This cant go here, we need to make this open a modal so we can display error messages properly, 
-    tell the user hey your about to overwrite the file etc. -->
-    <input id='fileUpload' type='file' (change)="uploadFiles($event)" multiple /> 
+    <button type="button" (click)="displayModal($event)">Upload Files</button>
     <button type="button" [disabled] = "disabled">delete</button>
 </div>
 

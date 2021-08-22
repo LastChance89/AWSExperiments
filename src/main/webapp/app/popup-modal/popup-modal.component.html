@@ -1,0 +1,14 @@
+
+
+<div class = "modal-header"> 
+
+    <div [ngSwitch] ="tpye" class="modal-body">
+        <div *ngSwitchCase="filePop"> 
+            <input id='fileUpload' type='file' (change)="uploadFiles($event)" multiple /> 
+        </div>
+    </div>
+
+</div>
+
+
+

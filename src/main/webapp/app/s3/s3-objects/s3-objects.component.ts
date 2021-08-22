@@ -2,6 +2,9 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { BucketObject } from '../../model/bucket-object';
 import { S3Object } from '../../model/s3-object';
 import { S3Service } from '../../service/s3.service';
+import { PopupType } from '../../model/popup-type'
+import {  NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { PopupModalComponent } from '../../popup-modal/popup-modal.component';
 
 @Component({
   selector: 's3-objects',
@@ -14,7 +17,7 @@ export class S3ObjectsComponent implements OnInit {
   disabled = true
   @Input() selectedBucket : String;
   @Output() objectContents: S3Object;
-  constructor(private s3: S3Service) { }
+  constructor(private s3: S3Service, private ngbModal: NgbModal) { }
 
   
 
@@ -35,11 +38,17 @@ export class S3ObjectsComponent implements OnInit {
 
 
   }
+  options: NgbModalOptions = {
+    backdrop: 'static',
+    centered: true,
+    size: "dialog-centered"
+  };
 
-  uploadFiles(e){
-    e.preventDefault();
+  displayModal(e){
+    e.preventDefault;
+    const modelRef = this.ngbModal.open(PopupModalComponent, this.options );
+    modelRef.componentInstance.tpye = PopupType.FILE;
   }
-
 
 
 

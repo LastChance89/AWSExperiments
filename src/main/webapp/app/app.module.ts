@@ -7,18 +7,26 @@ import { AppComponent } from './app.component';
 import { S3Component } from './s3/s3.component';
 import { S3Service } from './service/s3.service';
 import { S3ObjectsComponent } from './s3/s3-objects/s3-objects.component';
-
+import { PopupModalComponent } from './popup-modal/popup-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PopupFileComponent } from './popup-modal/file/popup-file/popup-file.component';
+import { PopupMessageComponent } from './popup-modal/message/popup-message/popup-message.component';
 @NgModule({
   declarations: [
     AppComponent,
     S3Component,
-    S3ObjectsComponent
+    S3ObjectsComponent,
+    PopupModalComponent,
+    PopupFileComponent,
+    PopupMessageComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
   ],
+  entryComponents:[PopupModalComponent],
   providers: [S3Service],
   bootstrap: [AppComponent]
 })
