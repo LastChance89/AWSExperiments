@@ -41,7 +41,7 @@ public class S3Controller {
 	//List<MultipartFile> files
 	@PostMapping("/upload")
 	public boolean uploadFile(@RequestBody List<MultipartFile> files ) {
-		
+		s3Service.addFileToBucket(files);
 		return false;
 	}
 	

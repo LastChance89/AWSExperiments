@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { error } from 'protractor';
 import { S3Service } from '../../../service/s3.service';
 
 @Component({
@@ -15,30 +16,27 @@ export class PopupFileComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //This is wrong but im too tired to fix it right now. 
+  files = new FormData();
 
 
-  uploadFiles(e){
+  selectFiles(e){
     e.preventDefault();
-    const files = new FormData();
-    e.target.files.array.forEach(element => {
-      //name,file, filename. 
-      files.append(element.name,element,element.name);
-    });
-    this.s3Service.uploadObjects(this.bucket, files).subscribe(result=>{
+    let files = e.target.files;
+    for(let i =0; i<files.length; i++){
+      this.files.append(files[i].name,files[i],files[i].name);
+    }
+ }
+
+
+  upload(){
+    this.s3Service.uploadObjects(this.bucket, this.files).subscribe(result=>{
       console.log(result);
-      
     },
     error=>{
       //make me a real boy error with an output that mnodifies the popup to show the message modal. 
       console.log(error);
-    }    
-    
-      )
-    
-
+    })
   }
-
-
-
-
+  
 }
