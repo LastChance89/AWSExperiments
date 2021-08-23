@@ -26,5 +26,10 @@ export class S3Service {
     return this.http.post<S3Object>('/s3/getBucketObject', payload);
   }
 
+  uploadObjects(bucketName: String, files:FormData): Observable<boolean>{
+    return this.http.post<boolean>("/s3/upload",files);
+
+  }
+
 
 }

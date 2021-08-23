@@ -48,6 +48,7 @@ export class S3ObjectsComponent implements OnInit {
     e.preventDefault;
     const modelRef = this.ngbModal.open(PopupModalComponent, this.options );
     modelRef.componentInstance.tpye = PopupType.FILE;
+    modelRef.componentInstance.bucket = this.selectedBucket;
   }
 
 

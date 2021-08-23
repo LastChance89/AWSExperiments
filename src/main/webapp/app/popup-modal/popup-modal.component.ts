@@ -15,16 +15,15 @@ export class PopupModalComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal) { }
   @Input() tpye: PopupType;
+  @Input() bucket: String; 
   
   ngOnInit(): void {
   }
 
-  uploadFiles(e){
-    e.preventDefault();
-    let files = e.target.files; 
-    console.log(files);
-  }
 
+  close(){
+    this.activeModal.close();
+  }
 
 
 }

@@ -4,9 +4,11 @@
 
     <div [ngSwitch] ="tpye" class="modal-body">
         <div *ngSwitchCase="filePop"> 
-            <input id='fileUpload' type='file' (change)="uploadFiles($event)" multiple /> 
+            <popup-file></popup-file>
         </div>
     </div>
+
+    <button (click)="close()">Close </button> 
 
 </div>
 
