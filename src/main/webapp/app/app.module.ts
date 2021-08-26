@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { S3Component } from './s3/s3.component';
@@ -25,6 +25,7 @@ import { PopupMessageComponent } from './popup-modal/message/popup-message/popup
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
+	FormsModule
   ],
   entryComponents:[PopupModalComponent],
   providers: [S3Service],

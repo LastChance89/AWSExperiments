@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,7 +41,7 @@ public class S3Controller {
 	
 	//List<MultipartFile> files
 	@PostMapping("/upload")
-	public boolean uploadFile(@RequestBody List<MultipartFile> files ) {
+	public boolean uploadFile(@RequestParam("files") List<MultipartFile> files ) {
 		s3Service.addFileToBucket(files);
 		return false;
 	}

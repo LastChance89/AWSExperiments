@@ -16,16 +16,14 @@ export class PopupFileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //This is wrong but im too tired to fix it right now. 
   files = new FormData();
-
 
   selectFiles(e){
     e.preventDefault();
-    let files = e.target.files;
-    for(let i =0; i<files.length; i++){
-      this.files.append(files[i].name,files[i],files[i].name);
+    for(let i = 0; i< e.target.files.length; i++){
+      this.files.append("files",e.target.files[i],e.target.files[i].name);
     }
+
  }
 
 
