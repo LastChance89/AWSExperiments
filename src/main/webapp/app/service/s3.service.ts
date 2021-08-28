@@ -31,5 +31,11 @@ export class S3Service {
 
   }
 
+  checkIfFileNamesExist(bucketName: String, filesNames:String[]){
+    let payload = {"bucketName": bucketName, "fileNames": JSON.stringify(filesNames)}
+    return this.http.post<any>("/s3/checkIfFileNamesExist", payload);
+  }
+
+
 
 }

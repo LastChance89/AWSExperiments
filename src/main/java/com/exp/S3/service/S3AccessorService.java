@@ -16,4 +16,5 @@ public interface S3AccessorService {
 	public void addFileToBucket(List<MultipartFile> files);
 	public List<S3ObjectSummary> getBucketContents(String bucketName);
 	public S3File getBucketObjectContents(Map<String,String> userSelection);
+	public List<String> checkIfFilesExists(String bucketName,List<String> fileNames);
 }

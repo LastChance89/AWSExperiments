@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
@@ -39,7 +40,7 @@ public class S3ClientUtil {
 				prop.getAccess(),
 				prop.getSecret());
 		s3Client = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(cred))
-				.withRegion("us-east-2").build();
+				.withRegion(Regions.US_EAST_2).build();
 	}
 		
 	public AmazonS3 getS3Client() {

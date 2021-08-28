@@ -34,6 +34,8 @@ public class S3AccessorServiceImpl implements S3AccessorService {
 	public void addFileToBucket(List<MultipartFile> files) {
 		// String bucketName, String key, File file
 		// File file = new File(files.get(0).getName());
+
+		
 		List<File> filesToUpload = new ArrayList<File>();
 		for (MultipartFile mpFile : files) {
 			File file = new File(mpFile.getName());
@@ -61,5 +63,24 @@ public class S3AccessorServiceImpl implements S3AccessorService {
 		s3File.setType(meta.getRawMetadata().get("Content-Type").toString());
 		return null;
 	}
+	
+	@Override 
+	public List<String> checkIfFilesExists(String bucketName,List<String> fileNames) {
+		
+		List<String> existingObjects = new ArrayList<String>();
+		for(String file : fileNames) {
+			try {
+				if(s3Client.getS3Client().doesObjectExist(bucketName, file)) {
+					existingObjects.add(file);
+				}
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return existingObjects;
+	}
+	
 
 }
