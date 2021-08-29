@@ -39,36 +39,29 @@ export class PopupFileComponent implements OnInit {
  }
 
 
-  upload(){
-
+  checkFiles(){
     this.s3Service.checkIfFileNamesExist(this.bucket, this.selectedFiles).subscribe(result=>{
       console.log(result);
       if(result.length === 0){
-         
+        this.upload();
+        this.close.emit();
       }
       else{
-        //display that file exists. 
         this.notification = true;
-
       }
-            this.close.emit();
+          
     },
     error =>{
+      console.log("error", error);
       this.activeModal.close;
     })
-
-    /*
- 
-    */
-
-  
-
   }
 
 
-  uploadFiles(){
+  upload(){
     this.s3Service.uploadObjects(this.bucket, this.files).subscribe(result=>{
       console.log(result);
+      this.close.emit();
     },
     error=>{
       //make me a real boy error with an output that mnodifies the popup to show the message modal. 

@@ -4,10 +4,10 @@
 
     <div [ngSwitch] ="tpye" class="modal-body">
         <div *ngSwitchCase="filePop"> 
-            <popup-file (close)="close($event)" [bucket]="bucket"></popup-file>
+            <popup-file (close)="close()" [bucket]="bucket"></popup-file>
         </div>
         <div *ngSwitchCase="messagePop"> 
-            <popup-message (close)="close($event)" [message]="message" ></popup-message>
+            <popup-message (close)="close()" [message]="message" ></popup-message>
         </div>
     </div>
 

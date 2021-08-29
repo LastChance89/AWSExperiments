@@ -20,6 +20,8 @@ import main.java.com.exp.util.S3ClientUtil;
 
 @Component
 public class S3AccessorServiceImpl implements S3AccessorService {
+	private String bucketName = null; 
+	
 	@Autowired
 	private S3ClientUtil s3Client;
 
@@ -28,6 +30,7 @@ public class S3AccessorServiceImpl implements S3AccessorService {
 	}
 
 	public List<S3ObjectSummary> getBucketContents(String bucketName) {
+		this.bucketName = bucketName;
 		return s3Client.getS3Client().listObjectsV2(bucketName).getObjectSummaries();
 	}
 
