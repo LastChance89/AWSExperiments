@@ -4,10 +4,14 @@
 
     <div [ngSwitch] ="tpye" class="modal-body">
         <div *ngSwitchCase="filePop"> 
-            <popup-file [bucket]="bucket"></popup-file>
+            <popup-file (close)="close($event)" [bucket]="bucket"></popup-file>
+        </div>
+        <div *ngSwitchCase="messagePop"> 
+            <popup-message (close)="close($event)" [message]="message" ></popup-message>
         </div>
     </div>
 
+    <!--Probably move this. Dunno what I was thinking. Well, what else is new. -->
     <button (click)="close()">Close </button> 
 
 </div>

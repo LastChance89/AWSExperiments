@@ -1,5 +1,15 @@
 
-<div>
-    <input type="file" (change)="selectFiles($event)" multiple /> 
-    <button (click)="upload()">OK</button> 
-</div> 
+
+<div> 
+
+    <div *ngIf="notification">
+        <p>The following files were found to already exist, do you want to overwrite them?</p> 
+        
+    </div> 
+
+    <div *ngIf="!notification">
+        <input type="file" (change)="selectFiles($event)" multiple /> 
+        <button (click)="upload()">OK</button> 
+    </div> 
+
+</div>
