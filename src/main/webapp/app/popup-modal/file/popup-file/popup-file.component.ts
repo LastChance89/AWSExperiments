@@ -18,14 +18,15 @@ export class PopupFileComponent implements OnInit {
   @Output() close = new EventEmitter();
 
   notification: boolean = false;
-
+  displayError: boolean = false;
   ngOnInit(): void {
   }
 
 
   selectedFiles : String[] = [];
-
+  existingFiles: String[] = [];
   files = new FormData();
+  errorMessage = null;
 
   selectFiles(e){
     e.preventDefault();
@@ -47,6 +48,7 @@ export class PopupFileComponent implements OnInit {
         this.close.emit();
       }
       else{
+        this.existingFiles = result;
         this.notification = true;
       }
           
@@ -59,12 +61,15 @@ export class PopupFileComponent implements OnInit {
 
 
   upload(){
+    this.notification = false;
     this.s3Service.uploadObjects(this.bucket, this.files).subscribe(result=>{
       console.log(result);
       this.close.emit();
     },
     error=>{
       //make me a real boy error with an output that mnodifies the popup to show the message modal. 
+      this.errorMessage = error;
+      this.displayError = true;
       console.log(error);
     })
   }

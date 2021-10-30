@@ -43,9 +43,9 @@ public class S3Controller {
 
 	// List<MultipartFile> files
 	@PostMapping("/upload")
-	public boolean uploadFile(@RequestParam("files") List<MultipartFile> files) {
-		s3Service.addFileToBucket(files);
-		return false;
+	public String uploadFile(@RequestParam("files") List<MultipartFile> files) {
+		return s3Service.addFileToBucket(files);
+		//return false;
 	}
 
 	@PostMapping("/checkIfFileNamesExist")

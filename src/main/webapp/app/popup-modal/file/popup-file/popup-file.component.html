@@ -3,8 +3,8 @@
 <div> 
     <div *ngIf="notification">
         <p>The following files were found to already exist, do you want to overwrite them?</p> 
-        <tr *ngFor = "let fileName of files">
-            <td><p>fileName</p></td>
+        <tr *ngFor = "let fileName of existingFiles">
+            <td><p>{{fileName}}</p></td>
         </tr>
         <button (click)="upload()">OK</button>
     </div> 
@@ -13,5 +13,10 @@
         <input type="file" (change)="selectFiles($event)" multiple /> 
         <button (click)="checkFiles()">OK</button> 
     </div> 
+
+    <div *ngIf="displayError">
+        <p>{{errorMessage}}</p>
+    </div>
+
 
 </div>

@@ -17,6 +17,14 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 
 import main.java.com.exp.util.PropertiesUtil;
 public class S3Accessor {
+	
+	
+	public static void main(String[] args) {
+		Double x =  0.000001;
+		Double y = 0.000001;
+		System.out.println(x-y);
+	}
+	
 /*
 	@Autowired
 	PropertiesUtil prop;

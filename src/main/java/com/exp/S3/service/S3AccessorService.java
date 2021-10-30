@@ -13,7 +13,7 @@ import main.java.com.exp.s3.model.S3File;
 
 public interface S3AccessorService {
 	public List<Bucket> listBuckets();
-	public void addFileToBucket(List<MultipartFile> files);
+	public String addFileToBucket(List<MultipartFile> files);
 	public List<S3ObjectSummary> getBucketContents(String bucketName);
 	public S3File getBucketObjectContents(Map<String,String> userSelection);
 	public List<String> checkIfFilesExists(String bucketName,List<String> fileNames);

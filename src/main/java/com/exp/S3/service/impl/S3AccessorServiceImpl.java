@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,9 +13,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 
+import main.java.com.exp.runnable.S3ObjectRunnable;
 import main.java.com.exp.s3.model.S3File;
 import main.java.com.exp.s3.service.S3AccessorService;
 import main.java.com.exp.util.S3ClientUtil;
@@ -34,27 +38,23 @@ public class S3AccessorServiceImpl implements S3AccessorService {
 		return s3Client.getS3Client().listObjectsV2(bucketName).getObjectSummaries();
 	}
 
-	public void addFileToBucket(List<MultipartFile> files) {
-		// String bucketName, String key, File file
-		// File file = new File(files.get(0).getName());
-
+	public String addFileToBucket(List<MultipartFile> files) {
 		
-		List<File> filesToUpload = new ArrayList<File>();
+		//Maybe make cached threadpool?
+		ExecutorService threadpool = Executors.newFixedThreadPool(5);
 		for (MultipartFile mpFile : files) {
-			File file = new File(mpFile.getName());
-			filesToUpload.add(file);
+			try {
+				threadpool.execute(new S3ObjectRunnable(bucketName, mpFile));
+			}
+			catch(Exception e) {
+				//make me a real boy error. 
+				return "ERROR";
+			}
 
 		}
-		try {
-			// PutObjectResult objResult = s3Client.putObject("ksmitwtesting",
-			// file.getName(), file);
-			// System.out.println(objResult.getVersionId());
-		}
-		// Make me a real boy error.
-		catch (Exception e) {
-			System.out.println("Failed to upload document to bucket");
-			e.printStackTrace();
-		}
+		
+		return "Good to go";
+
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class S3AccessorServiceImpl implements S3AccessorService {
 	
 	@Override 
 	public List<String> checkIfFilesExists(String bucketName,List<String> fileNames) {
-		
+		this.bucketName = bucketName;
 		List<String> existingObjects = new ArrayList<String>();
 		for(String file : fileNames) {
 			try {
